@@ -1,7 +1,6 @@
 from django.db import models
 
 # Create your models here.
-
 class Author(models.Model):
   name = models.CharField(max_length = 50)
 
@@ -27,4 +26,4 @@ class Librarian(models.Model):
   library = models.OneToOneField(Library, on_delete = models.CASCADE)
 
   def _str_(self):
-    return self.name 
+    return self.name
