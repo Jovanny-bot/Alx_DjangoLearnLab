@@ -7,6 +7,6 @@ class Book(models.Model):
   author = models.CharField(max_length=100)
   publication_year = models.IntegerField(null = True)
 
-  def _str_(self):
-    return f"{self.title} by {self.author}"
+  def __str__(self):
+    return f"{self.title} by {self.author}"
     
