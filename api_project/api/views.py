@@ -1,8 +1,9 @@
 from rest_framework import viewsets
 from .models import Book
 from .serializers import BookSerializer
+from rest_framework.permissions import IsAuthenticated
 
-# Define the BookViewSet for handling all CRUD operations
 class BookViewSet(viewsets.ModelViewSet):
-    queryset = Book.objects.all()  # Get all books from the database
-    serializer_class = BookSerializer  # Use the BookSerializer for serialization
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+    permission_classes = [IsAuthenticated]  # Require authentication for all actions
