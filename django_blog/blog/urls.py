@@ -21,8 +21,8 @@ from .views import (
 
 urlpatterns = [
     path('posts/', PostListView.as_view(), name='post-list'),  # List all posts
-    path('post/<int:pk>/', PostDetailView.as_view(), name='post-detail'),  # View a single post
+    path('post/<int:pk>/comments/new/', PostDetailView.as_view(), name='post-detail'),  # View a single post
     path('post/new/', PostCreateView.as_view(), name='post-create'),  # Create a new post
-    path('post/<int:pk>/update/', PostUpdateView.as_view(), name='post-update'),  # Edit a post
-    path('post/<int:pk>/delete/', PostDeleteView.as_view(), name='post-delete'),  # Delete a post
+    path('comment/<int:pk>/update/', PostUpdateView.as_view(), name='post-update'),  # Edit a post
+    path('comment/<int:pk>/delete/', PostDeleteView.as_view(), name='post-delete'),  # Delete a post
 ]
