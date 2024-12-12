@@ -1,0 +1,7 @@
+<!-- blog/templates/blog/comment_edit.html -->
+<h2>Edit comment:</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save changes</button>
+</form
