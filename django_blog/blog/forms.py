@@ -37,6 +37,7 @@ class CommentForm(forms.ModelForm):
         model = Comment
         fields = ['content']
 
+"""
 # blog/forms.py
 from django import forms
 from .models import Post, Tag
@@ -57,3 +58,32 @@ class PostForm(forms.ModelForm):
         if commit:
             post.save()
         return post
+"""
+
+# blog/forms.py
+from django import forms
+from .models import Post
+from taggit.forms import TagWidget
+from django.forms import widgets
+
+class PostForm(forms.ModelForm):
+    tags = forms.CharField(widget=TagWidget())
+
+    class Meta:
+        model = Post
+        fields = ['title', 'content', 'tags']
+        widgets = {
+            'tags': TagWidget(),
+        }
+
+# blog/forms.py
+from django import forms
+from .models import Post
+from taggit.forms import TagWidget
+
+class PostForm(forms.ModelForm):
+    tags = forms.CharField(widget=TagWidget())
+
+    class Meta:
+        model = Post
+        fields = ['title', 'content', 'tags']

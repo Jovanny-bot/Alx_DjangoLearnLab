@@ -144,3 +144,4 @@ def search_posts(request):
         posts = Post.objects.all()
     return render(request, 'blog/search_results.html', {'posts': posts})
 
+
