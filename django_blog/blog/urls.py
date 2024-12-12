@@ -43,3 +43,33 @@ urlpatterns = [
     path('tags/<str:tag_name>/', PostListView.as_view(), name='tag-posts'),
     path('search/', search_posts, name='search-posts'),
 ]
+
+# blog/urls.py
+from django.urls import path
+from .views import PostByTagListView
+
+urlpatterns = [
+    # ...
+    path('tags/<slug:tag_slug>/', PostByTagListView.as_view(), name='post_by_tag'),
+    # ...
+]
+
+# blog/views.py
+from django.views.generic import ListView
+from .models import Post
+from taggit.models import Tag
+
+class PostByTagListView(ListView):
+    model = Post
+    template_name = 'blog/post_list.html'
+    context_object_name = 'posts'
+
+    def get_queryset(self):
+        tag_slug = self.kwargs['tag_slug']
+        tag = Tag.objects.get(slug=tag_slug)
+        return Post.objects.filter(tags__in=[tag])
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['tag'] = self.kwargs['tag_slug']
+        return context
