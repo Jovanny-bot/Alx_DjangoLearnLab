@@ -36,3 +36,24 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ['content']
+
+# blog/forms.py
+from django import forms
+from .models import Post, Tag
+
+class PostForm(forms.ModelForm):
+    tags = forms.CharField(max_length=255, required=False)
+
+    class Meta:
+        model = Post
+        fields = ['title', 'content', 'tags']
+
+    def save(self, commit=True):
+        post = super().save(commit=False)
+        tags = self.cleaned_data['tags'].split(',')
+        for tag in tags:
+            tag, created = Tag.objects.get_or_create(name=tag.strip())
+            post.tags.add(tag)
+        if commit:
+            post.save()
+        return post

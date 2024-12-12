@@ -26,3 +26,20 @@ urlpatterns = [
     path('comment/<int:pk>/update/', PostUpdateView.as_view(), name='post-update'),  # Edit a post
     path('comment/<int:pk>/delete/', PostDeleteView.as_view(), name='post-delete'),  # Delete a post
 ]
+
+# blog/urls.py
+from django.urls import path
+from .views import (
+    PostListView,
+    PostDetailView,
+    PostCreateView,
+    PostUpdateView,
+    PostDeleteView,
+    search_posts,
+)
+
+urlpatterns = [
+    # ...
+    path('tags/<str:tag_name>/', PostListView.as_view(), name='tag-posts'),
+    path('search/', search_posts, name='search-posts'),
+]
