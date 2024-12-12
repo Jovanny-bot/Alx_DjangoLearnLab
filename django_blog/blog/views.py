@@ -87,7 +87,7 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         post = self.get_object()
         return self.request.user == post.author
     
-    # blog/views.py
+"""   # blog/views.py
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -131,7 +131,7 @@ def comment_delete(request, pk):
         messages.success(request, 'Comment deleted successfully.')
         return redirect('post-detail', pk=comment.post.pk)
     return render(request, 'blog/comment_delete.html', {'comment': comment})
-
+"""
 
 # blog/views.py
 from django.shortcuts import render, redirect
