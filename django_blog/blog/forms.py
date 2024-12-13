@@ -63,7 +63,7 @@ class PostForm(forms.ModelForm):
 # blog/forms.py
 from django import forms
 from .models import Post
-from taggit.forms import TagWidget
+from taggit.form import TagWidget
 from django.forms import widgets
 
 class PostForm(forms.ModelForm):
@@ -75,15 +75,3 @@ class PostForm(forms.ModelForm):
         widgets = {
             'tags': TagWidget(),
         }
-
-# blog/forms.py
-from django import forms
-from .models import Post
-from taggit.forms import TagWidget
-
-class PostForm(forms.ModelForm):
-    tags = forms.CharField(widget=TagWidget())
-
-    class Meta:
-        model = Post
-        fields = ['title', 'content', 'tags']
