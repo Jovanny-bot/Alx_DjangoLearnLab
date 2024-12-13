@@ -57,3 +57,12 @@ class RegisterSerializer(serializers.ModelSerializer):
         )
         Token.objects.create(user=user)  # Create a token for the user
         return user
+    
+# accounts/serializers.py
+from rest_framework import serializers
+from .models import CustomUser 
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser 
+        fields = ['id', 'username', 'bio', 'profile_picture']
